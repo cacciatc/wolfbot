@@ -10,13 +10,24 @@
 var _store = {players: {}};
 
 var bot = plugin('bot',{
-    /* helper methods for a player's bot */
+	/* helper methods for a player's bot */
     get_bot: function(player){
         return _store.players[player.name];
     },
     set_bot: function(player,bot,inventory){
         _store.players[player.name] = {bot:bot,inventory:inventory};
     },
+
+    /* display the commands and what they do */
+		help: function(player){
+			player.sendMessage("Wolfbot Help Menu: Available Commands \n\n");
+			player.sendMessage("Summon: Summons a new wolfbot \n");
+			player.sendMessage("Dismiss: Dismisses your wolfbot \n");
+			player.sendMessage("Stay: Tells your wolfbot to stay \n");
+			player.sendMessage("Come: Tells your wolfbot to come \n");
+			player.sendMessage("Pack: Displays the inventory of your wolfbot's pack \n");
+		},
+
     /* summons your bot */
     summon: function(player){
         var world  = player.world
@@ -34,7 +45,7 @@ var bot = plugin('bot',{
         var inventory; 
         var b = this.get_bot(player);
         if(b == null || b.inventory == null)
-            inventory = player.getServer().createInventory(player, 18, "Bot's Pack");
+            inventory = player.getServer().createInventory(player, 36, "Bot's Pack");
         else
             inventory = b.inventory;
         
@@ -77,6 +88,9 @@ var bot = plugin('bot',{
 
 exports.bot = bot;
 
+command('help',function(params, sender){
+    bot.help(sender);
+});
 command('summon',function(params, sender){
     bot.summon(sender);
 });
