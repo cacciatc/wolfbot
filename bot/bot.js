@@ -19,14 +19,14 @@ var bot = plugin('bot',{
     },
 
     /* display the commands and what they do */
-	help: function(){
-		self.sendMessage("Wolfbot Help Menu: Available Commands \n\n");
-		self.sendMessage("Summon: Summons a new wolfbot \n");
-		self.sendMessage("Dismiss: Dismisses your wolfbot \n");
-		self.sendMessage("Stay: Tells your wolfbot to stay \n");
-		self.sendMessage("Come: Tells your wolfbot to come \n");
-		self.sendMessage("Pack: Displays the inventory of your wolfbot's pack \n");
-	},
+		help: function(player){
+			player.sendMessage("Wolfbot Help Menu: Available Commands \n\n");
+			player.sendMessage("Summon: Summons a new wolfbot \n");
+			player.sendMessage("Dismiss: Dismisses your wolfbot \n");
+			player.sendMessage("Stay: Tells your wolfbot to stay \n");
+			player.sendMessage("Come: Tells your wolfbot to come \n");
+			player.sendMessage("Pack: Displays the inventory of your wolfbot's pack \n");
+		},
 
     /* summons your bot */
     summon: function(player){
